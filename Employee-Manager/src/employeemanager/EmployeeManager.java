@@ -16,10 +16,10 @@ import javafx.stage.Stage;
  * @author greut
  */
 public class EmployeeManager extends Application {
-    
+        
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("AddEmployee.fxml"));
         
         Scene scene = new Scene(root);
         

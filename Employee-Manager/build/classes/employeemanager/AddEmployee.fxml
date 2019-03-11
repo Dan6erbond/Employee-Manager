@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="employeemanager.AddEmployeeController">
+   <children>
+      <Label fx:id="windowTitle" layoutX="272.0" layoutY="31.0" text="add Employee" />
+      <Spinner fx:id="spinner" layoutX="207.0" layoutY="163.0" />
+      <TextField layoutX="209.0" layoutY="118.0" promptText="Name" />
+   </children>
+</AnchorPane>

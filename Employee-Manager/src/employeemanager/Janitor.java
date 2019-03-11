@@ -11,8 +11,8 @@ package employeemanager;
  */
 public class Janitor extends Employee {
 
-    public Janitor(String name, String job) {
-        super(name, job);
+    public Janitor(String name, String job, HeadEmployee head) {
+        super(name, job, head);
     }
     
     @Override

@@ -6,38 +6,76 @@
 package employeemanager;
 
 import java.net.URL;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 
 /**
  *
  * @author greut
  */
-public class FXMLDocumentController implements Initializable {
-    
-    @FXML
-    private Label label;
-    
-    @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-        
-        DepartmentHead dp = new DepartmentHead("Max", "programming");
-        Janitor j1 = new Janitor("Hans", "cleaning");
-        Janitor j2 = new Janitor("Nick", "cleaning");
-        dp.add(j1);
-        dp.add(j2);
-        dp.doJob();
+public class FXMLDocumentController implements Initializable, Observer {
 
-    }
+    private Company company = new Company();
     
+    @FXML
+    private ListView<Employee> listview;
+    @FXML
+    private Label nameLabel;
+    @FXML
+    private Label jobLabel;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+        company.addObserver(this);
+        company.setSelected(company.getCEO());
+
+        listview.setCellFactory(param -> new ListCell<Employee>() {
+            @Override
+            protected void updateItem(Employee item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (empty || item == null || item.name == null) {
+                    setText(null);
+                } else {
+                    setText(item.name);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        listview.setItems(null);
+        
+        try {
+            HeadEmployee employee = (HeadEmployee)company.getSelected();
+            ObservableList<Employee> employees = FXCollections.observableArrayList(employee.employees);
+            listview.setItems(employees);
+        } catch (Exception ignore){ }
+        
+        nameLabel.setText(company.getSelectedName());
+        jobLabel.setText(company.getSelectedJob());
+    }
+
+    @FXML
+    private void listviewClick(MouseEvent event) {
+        company.setSelected(listview.getSelectionModel().getSelectedItem());
+    }
+
+    @FXML
+    private void goBack(ActionEvent event) {
+        company.goBack();
+    }
+
 }

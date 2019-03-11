@@ -12,10 +12,12 @@ package employeemanager;
 public abstract class Employee {
     
     protected String name, job;
+    protected HeadEmployee head;
     
-    public Employee(String name, String job){
+    public Employee(String name, String job, HeadEmployee head){
         this.name = name;
         this.job = job;
+        this.head = head;
     }
     
     public abstract void doJob();

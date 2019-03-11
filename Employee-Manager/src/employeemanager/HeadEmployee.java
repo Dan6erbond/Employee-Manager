@@ -13,10 +13,10 @@ import java.util.ArrayList;
  */
 public abstract class HeadEmployee extends Employee {
     
-    private ArrayList<Employee> employees = new ArrayList<>();
+    protected ArrayList<Employee> employees = new ArrayList<>();
     
-    public HeadEmployee(String name, String job){
-        super(name, job);
+    public HeadEmployee(String name, String job, HeadEmployee head){
+        super(name, job, head);
     }
     
     @Override
@@ -29,10 +29,6 @@ public abstract class HeadEmployee extends Employee {
     
     public void add(Employee employee){
         this.employees.add(employee);
-    }
-    
-    public void add(ArrayList<Employee> employees){
-        this.employees.addAll(employees);
     }
     
     public void remove(Employee employee){

@@ -9,10 +9,10 @@ package employeemanager;
  *
  * @author User
  */
-public class DepartmentHead extends HeadEmployee {
+public class CEO extends HeadEmployee {
 
-    public DepartmentHead(String name, String job, HeadEmployee head){
-        super(name, job, head);
+    public CEO(String name, String job) {
+        super(name, job, null);
     }
     
 }
