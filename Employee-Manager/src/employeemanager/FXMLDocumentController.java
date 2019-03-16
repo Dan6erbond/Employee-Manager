@@ -70,7 +70,10 @@ public class FXMLDocumentController implements Initializable, Observer {
 
     @FXML
     private void listviewClick(MouseEvent event) {
-        company.setSelected(listview.getSelectionModel().getSelectedItem());
+        Employee employee = listview.getSelectionModel().getSelectedItem();
+        if (employee != null){
+            company.setSelected(employee);
+        }
     }
 
     @FXML
